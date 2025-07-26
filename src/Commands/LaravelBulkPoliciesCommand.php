@@ -62,15 +62,17 @@ class LaravelBulkPoliciesCommand extends Command
             $policyClass = $modelBase.'Policy';
             $policyFile = $policyPath.DIRECTORY_SEPARATOR.$policyClass.'.php';
             if (file_exists($policyFile)) {
+                $this->line("[DEBUG] Skipping existing policy: $policyFile");
                 $skipped[] = $policyClass;
 
                 continue;
             }
-
-            $this->call('make:policy', [
+            $this->line("[DEBUG] Generating policy for: $model as $policyClass");
+            $result = $this->call('make:policy', [
                 'name' => $policyClass,
                 '--model' => $model,
             ]);
+            $this->line("[DEBUG] make:policy result: $result");
             $created[] = $policyClass;
         }
 

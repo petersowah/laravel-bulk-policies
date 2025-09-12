@@ -17,9 +17,6 @@ class LaravelBulkPoliciesServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-bulk-policies')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel_bulk_policies_table')
             ->hasCommand(LaravelBulkPoliciesCommand::class);
     }
 }
